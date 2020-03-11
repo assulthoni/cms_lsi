@@ -1,0 +1,112 @@
+$main-color: #2e59d9;
+$font: "Montserrat";
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+body{
+  font-family: $font;
+}
+.logo-index{
+  width: 40%;
+  margin-bottom: 5% !important;
+}
+
+.search-index{
+  width: 100%;
+  box-shadow: 0px 10px 20px 0px rgba(46,89,217,0.20);
+  border-radius: 20px;
+  margin-bottom: 5% !important;
+}
+.search-input{
+  background-color: white;
+  border-radius: 20px;
+  font-family: $font;
+  border: none
+}
+.btn-search{
+  background-color: $main-color;
+  border: 0px;
+  border-radius: 20px;
+  color: white;
+}
+
+
+.btn-search:hover{
+  background-color: white;
+  border: 0px;
+  border-radius: 20px;
+  color: $main-color;
+}
+
+.btn-search:active{
+  background-color: $main-color;
+  border: 0px;
+  border-radius: 20px;
+  color: white;
+}
+
+
+.card-menu{
+  border: 0px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px 0px rgba(46,89,217,0.20);
+  color: $main-color;
+  a:hover{
+    text-decoration: none;
+  }
+}
+
+.margin-bottom{
+  margin-bottom: 2%;
+}
+
+.pull-bottom{
+  position: fixed;
+  bottom: 0;
+}
+
+#contain{
+  // height: 70vh !important;
+
+  margin-bottom: 2%;
+  h1{
+    font-weight: bold;
+    color: black;
+  }
+}
+
+.select-tahun{
+  width: 100%;
+  border: none;
+}
+
+.select-form{
+  width: 100%;
+  box-shadow: 0px 10px 20px 0px rgba(46,89,217,0.20);
+  border-radius: 20px;
+
+}
+
+.login-form{
+  width: 100%;
+  box-shadow: 0px 10px 20px 0px rgba(46,89,217,0.20);
+  border-radius: 20px;
+  padding: 3%;
+
+  .form-login{
+    width: 100% !important;
+    .login-input{
+      display: block;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 2%;
+    }
+  }
+}
+
+
+.register-input{
+  margin-bottom: 2%;
+  box-shadow: 0px 10px 20px 0px rgba(46,89,217,0.10);
+}
+
