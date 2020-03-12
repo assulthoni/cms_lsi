@@ -36,7 +36,7 @@ Route::group(array('before' => 'auth'),function(){
   Route::resource('menukategori','MenuKategoriController');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/search', 'SearchController@index')->name('searchquery');
 });
 Auth::routes();
 // Route::get('/search', 'SearchController@index')->name('search');

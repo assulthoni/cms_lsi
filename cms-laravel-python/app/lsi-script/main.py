@@ -3,11 +3,10 @@ import warnings
 import PyPDF2
 import os
 import sys
-<<<<<<< HEAD
-=======
+
 import json
 from sqlalchemy import create_engine
->>>>>>> master
+
 def extract_pdf_to_list(path, file_name):
     """
     input : path of file
@@ -36,18 +35,9 @@ def stopwords_id(path, file_name):
     return stopwords
 if __name__ == '__main__':
     warnings.filterwarnings("ignore")
-<<<<<<< HEAD
-    documents = access_all(sys.argv[1])
-    stopwords = stopwords_id('', sys.argv[2])
-    # print(stopwords)
-    q = 'geodesi lalalala'
-    lsi = LSI(documents, q)
-    ranking = lsi.process()
-    print(ranking)
     # lsi.index_to_db()
-=======
     try:
-        engine = create_engine('mysql://sql12324137:SAGVuJCnS5@sql12.freemysqlhosting.net/sql12324137?charset=utf8mb4')
+        engine = create_engine('mysql://root@127.0.0.1:3306/cms_ta')
         query = "SELECT abstract FROM tb_tugas_akhir"
         resultproxy = engine.execute(query)
         d, a = {}, []
@@ -58,17 +48,13 @@ if __name__ == '__main__':
                 d = {**d, **{column: value}}
             a.append(d)
         documents = [d['abstract'] for d in a]
+        documents = [d.decode("utf-8") for d in documents]
         stopwords = stopwords_id('', sys.argv[1])
-        # print(stopwords)
         q = sys.argv[2]
-        lsi = LSI(documents, q, stopwords=stopwords, rank_approximation=len(documents))
+        lsi = LSI(docs=documents,query=q, stopwords=stopwords, rank_approximation=len(documents))
         ranking = lsi.process()
         print(json.dumps(ranking.tolist()))
-        # lsi.index_to_db()
-
-        # print("SUCCESS")
         pass
     except Exception as e:
         print(e)
         raise
->>>>>>> master

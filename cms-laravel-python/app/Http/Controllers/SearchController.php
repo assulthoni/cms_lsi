@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use Illuminate\Http\Request;
 
-=======
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
+
 use App\Models\TbTugasAkhir;
->>>>>>> master
+
 class SearchController extends Controller
 {
     /**
@@ -18,13 +16,6 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-    public function index()
-    {
-        //
-        $result = shell_exec("python ".app_path()."\lsi-script\main.py ".storage_path()."\TA ".storage_path()."\stopwords_id.txt 2>&1");
-        var_dump($result);
-=======
     public function __construct()
     {
         $this->middleware('auth');
@@ -32,11 +23,11 @@ class SearchController extends Controller
     public function index(Request $request)
     {
 
-        $query = $request->input('query');
-        $result = shell_exec("python ".app_path()."\lsi-script\main.py ".storage_path()."\stopwords_id.txt \"".$query."\" 2>&1");
-        $ranking = json_decode($result);
-        return $this->show($ranking);
->>>>>>> master
+      $query = $request->input('query');
+      $result = shell_exec("python ".app_path()."\lsi-script\main.py ".storage_path()."\stopwords_id.txt \"".$query."\" 2>&1");
+      $ranking = json_decode($result);
+      // dd($ranking);
+      return $this->show($ranking);
     }
 
     /**
@@ -47,11 +38,8 @@ class SearchController extends Controller
     public function create()
     {
         //
-<<<<<<< HEAD
-=======
         $result = shell_exec("python ".app_path()."\lsi-script\store_all_abstract.py ".storage_path()."\TA 2>&1");
         var_dump($result);
->>>>>>> master
     }
 
     /**
@@ -73,11 +61,7 @@ class SearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-    public function show($id)
-    {
-        //
-=======
+
     public function show($sortedranking)
     {
         //
@@ -88,7 +72,6 @@ class SearchController extends Controller
           $sortedta[$index] = $tugas_akhir[$priority-1];
         }
         return view('hasil_pencarian', compact('sortedta'));
->>>>>>> master
     }
 
     /**

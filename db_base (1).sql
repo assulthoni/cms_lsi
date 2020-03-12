@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Waktu pembuatan: 20 Feb 2020 pada 04.13
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.1
+-- Host: 127.0.0.1
+-- Generation Time: Mar 12, 2020 at 03:11 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_base`
+-- Database: `cms_ta`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -35,7 +35,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -58,7 +58,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_index`
+-- Table structure for table `tb_index`
 --
 
 CREATE TABLE `tb_index` (
@@ -69,7 +69,7 @@ CREATE TABLE `tb_index` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_index_ta`
+-- Table structure for table `tb_index_ta`
 --
 
 CREATE TABLE `tb_index_ta` (
@@ -81,7 +81,7 @@ CREATE TABLE `tb_index_ta` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kata_dasar`
+-- Table structure for table `tb_kata_dasar`
 --
 
 CREATE TABLE `tb_kata_dasar` (
@@ -93,7 +93,7 @@ CREATE TABLE `tb_kata_dasar` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kategori`
+-- Table structure for table `tb_kategori`
 --
 
 CREATE TABLE `tb_kategori` (
@@ -102,7 +102,7 @@ CREATE TABLE `tb_kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_kategori`
+-- Dumping data for table `tb_kategori`
 --
 
 INSERT INTO `tb_kategori` (`id_kategori`, `kategori`) VALUES
@@ -111,7 +111,7 @@ INSERT INTO `tb_kategori` (`id_kategori`, `kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kategori_ta`
+-- Table structure for table `tb_kategori_ta`
 --
 
 CREATE TABLE `tb_kategori_ta` (
@@ -120,7 +120,7 @@ CREATE TABLE `tb_kategori_ta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_kategori_ta`
+-- Dumping data for table `tb_kategori_ta`
 --
 
 INSERT INTO `tb_kategori_ta` (`id_ta`, `id_kategori`) VALUES
@@ -137,12 +137,14 @@ INSERT INTO `tb_kategori_ta` (`id_ta`, `id_kategori`) VALUES
 (17, 1),
 (18, 1),
 (19, 1),
-(20, 1);
+(20, 1),
+(21, 1),
+(22, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pembimbing`
+-- Table structure for table `tb_pembimbing`
 --
 
 CREATE TABLE `tb_pembimbing` (
@@ -151,7 +153,7 @@ CREATE TABLE `tb_pembimbing` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_pembimbing`
+-- Dumping data for table `tb_pembimbing`
 --
 
 INSERT INTO `tb_pembimbing` (`id_pembimbing`, `nama_pembimbing`) VALUES
@@ -160,7 +162,7 @@ INSERT INTO `tb_pembimbing` (`id_pembimbing`, `nama_pembimbing`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_program_studi`
+-- Table structure for table `tb_program_studi`
 --
 
 CREATE TABLE `tb_program_studi` (
@@ -169,7 +171,7 @@ CREATE TABLE `tb_program_studi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_program_studi`
+-- Dumping data for table `tb_program_studi`
 --
 
 INSERT INTO `tb_program_studi` (`id_prodi`, `nama_prodi`) VALUES
@@ -182,7 +184,7 @@ INSERT INTO `tb_program_studi` (`id_prodi`, `nama_prodi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_stopword`
+-- Table structure for table `tb_stopword`
 --
 
 CREATE TABLE `tb_stopword` (
@@ -193,7 +195,7 @@ CREATE TABLE `tb_stopword` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_tugas_akhir`
+-- Table structure for table `tb_tugas_akhir`
 --
 
 CREATE TABLE `tb_tugas_akhir` (
@@ -208,30 +210,17 @@ CREATE TABLE `tb_tugas_akhir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_tugas_akhir`
+-- Dumping data for table `tb_tugas_akhir`
 --
 
 INSERT INTO `tb_tugas_akhir` (`id_ta`, `judul`, `penulis`, `tahun`, `id_pembimbing`, `id_prodi`, `abstract`, `nama_file`) VALUES
-(1, 'cobaan skripsi', 'pundung sanjaya', 2018, 1, 1, 0x696e69206164616c616820636f6261616e20736b72697073692064616e20696e69206164616c6168206162737472616b73692064696d616e61206162737472616b7369206164616c61682067616d626172616e206265736172206461726920736562756168, 'Etprof Self Assesment Chapter 3.docx'),
-(7, 'coba', 'santoso', 2018, 1, 3, 0x706572636f6261616e2066696c6520696e707574, 'Module 2.pdf'),
-(8, 'coba2', 'santoso 2', 2019, 1, 2, 0x696e69206164616c616820706572636f6261616e206b65647561, 'Module 3.pdf'),
-(9, 'coba3', 'santoso 3', 2018, 1, 4, 0x696e69206164616c616820706572636f6261616e2075706c6f61642066696c65206b6574696761, 'Module 2.pdf'),
-(10, 'coba4', 'santoso 4', 2017, 1, 5, 0x696e69206164616c616820706572636f6261616e206b65656d706174, 'Module 2.pdf'),
-(11, 'coba5', 'santoso 5', 2017, 1, 5, 0x696e69206164616c616820706572636f6261616e206b656c696d61, 'Module 2.pdf'),
-(12, 'fdasfsga', 'dasdasg', 2017, 1, 3, 0x6167616467737273747667737667746776737476677367747674677674, 'Module 3.pdf'),
-(13, 'dfadfasg', 'santoso', 2017, 1, 4, 0x646673647a66646662627367646667646667737267737467, 'Module 3.pdf'),
-(14, 'fsdfzfdgdfgd', 'dfgzdfgzdfg', 2019, 1, 2, 0x7a676466677a6466677a6466677a646667, 'Module 3.pdf'),
-(15, 'asdfasdf', 'gdfgdfgdfg', 2018, 1, 1, 0x6466676466677a6466677a6466677a646667646667, 'C:\\xampp\\tmp\\phpB830.tmp'),
-(16, 'coba akhir', 'ksDJnfksdfsd', 2017, 1, 4, 0x647a66676466676466677a64677a6472677a6472677a647267, 'C:\\xampp\\tmp\\php4A55.tmp'),
-(17, 'sdfzdfgzdfg', 'fgzdfgzdg', 2017, 1, 1, 0x6466677a6466677a646667, 'C:\\xampp\\tmp\\php891B.tmp'),
-(18, 'asdasd', 'SDFSDFSDf', 2017, 1, 1, 0x667a6466677a646667646667, 'public/TA/GYBuD1dR91beYzaMYCuz3DlzjESiAH3M3OuceB6B.pdf'),
-(19, 'dfadfasg', 'pundung sanjaya', 2018, 1, 1, 0x76647666767366767376737276747320727467737276616a6862636c6164666270697661646662766c6a61642065666a6c73646b66626c657266626c616b6e, 'Module 4.pdfpdf'),
-(20, 'fdgdfgd', 'fdflgjnldkjfng', 2018, 1, 2, 0x66676c646a666e676b6a6e6466676c6b6a736e6c666b676a6e7364666e67646e666b67646772, 'Module 2.pdf');
+(21, 'tugas akhir 1', 'lalala', 2019, 1, 2, 0x6164696a73616f6a64616f73646e616e646f73616e646f616e646f6e616f64736e616c6b646e61736c6b646e6c61736b6e646c6b61736e646c6b616e7373646c6b73616e64617364, 'CREATE IT WEB UI-01.svg'),
+(22, 'tugas akhir 2', 'dddd', 2018, 1, 4, 0x6c616c612079657965206c616c612079657965, 'CREATE IT WEB UI-01.svg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_user`
+-- Table structure for table `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -242,7 +231,7 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_user`
+-- Dumping data for table `tb_user`
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `password`, `jenis_user`) VALUES
@@ -251,7 +240,7 @@ INSERT INTO `tb_user` (`id_user`, `username`, `password`, `jenis_user`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -264,83 +253,84 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$MuVoloWwkjw5XDMyYypyjulZTfTHxexKiXLRxSs5Og18Yc7EpT3kG', 'i5wJOSWREdGsUBac1RlwUGC9e4ljY690jpSKvnNn9dpdRtp8uorRrg1jxs3s', '2020-02-13 07:58:34', '2020-02-13 07:58:34'),
+(1, 'admin', '$2y$10$MuVoloWwkjw5XDMyYypyjulZTfTHxexKiXLRxSs5Og18Yc7EpT3kG', 'vxMTAjRWcyGgA0nVolxBDAoUnGd3TRMV3rhnKtIPZkWUaBzUyb0RPszkO776', '2020-02-13 07:58:34', '2020-02-13 07:58:34'),
 (2, 'user', '$2y$10$OuVb6HGUFI9HEpnAmc4aNuILTX9bkEihZhAZqhA3.KfGEKdqPDAzu', 'GZS3AxPxxRXC8I2oid0NhfdjSC3AR01YkZweV31DR1DFGkM4s7Dp7P5w1FJj', '2020-02-13 10:52:04', '2020-02-13 10:52:04'),
 (3, 'userlagi', '$2y$10$nooClubnAb0julNb3h3dhewPlxcva7O4DRn.j4fBql4Ms3sZIY1NK', 'K57vblRrWnksBvqPw3gi5nDmb63xRcQ7jrX08BlUkA8i8uYMsWLOBceFftLQ', '2020-02-13 12:16:21', '2020-02-13 12:16:21'),
-(4, 'userlagi2', '$2y$10$AOkAOWuVcqf0EnOIdUBIwOaKFv57rpqyVOBTR2OGQWetL9V323DBy', NULL, '2020-02-13 12:19:40', '2020-02-13 12:19:40');
+(4, 'userlagi2', '$2y$10$AOkAOWuVcqf0EnOIdUBIwOaKFv57rpqyVOBTR2OGQWetL9V323DBy', NULL, '2020-02-13 12:19:40', '2020-02-13 12:19:40'),
+(5, 'mhs123', '$2y$10$.khUQKefCGvtNBXquIeFK.DZxsBoyc1XAehAGZ6lH2ULZ2Rvx0xFm', '4ydVs6Hg1xANFBajP5eA5sby5Lb6lD1mY5xZRV3wJDWKlO9PQTCtGBmSNuku', '2020-03-12 06:14:27', '2020-03-12 06:14:27');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
+  ADD KEY `password_resets_email_index` (`email`(191));
 
 --
--- Indeks untuk tabel `tb_index`
+-- Indexes for table `tb_index`
 --
 ALTER TABLE `tb_index`
   ADD PRIMARY KEY (`id_index`);
 
 --
--- Indeks untuk tabel `tb_index_ta`
+-- Indexes for table `tb_index_ta`
 --
 ALTER TABLE `tb_index_ta`
   ADD KEY `id_ta` (`id_ta`,`id_index`),
   ADD KEY `id_index` (`id_index`);
 
 --
--- Indeks untuk tabel `tb_kata_dasar`
+-- Indexes for table `tb_kata_dasar`
 --
 ALTER TABLE `tb_kata_dasar`
   ADD PRIMARY KEY (`id_katadasar`);
 
 --
--- Indeks untuk tabel `tb_kategori`
+-- Indexes for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `tb_kategori_ta`
+-- Indexes for table `tb_kategori_ta`
 --
 ALTER TABLE `tb_kategori_ta`
   ADD KEY `id_ta_3` (`id_ta`,`id_kategori`),
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
--- Indeks untuk tabel `tb_pembimbing`
+-- Indexes for table `tb_pembimbing`
 --
 ALTER TABLE `tb_pembimbing`
   ADD PRIMARY KEY (`id_pembimbing`);
 
 --
--- Indeks untuk tabel `tb_program_studi`
+-- Indexes for table `tb_program_studi`
 --
 ALTER TABLE `tb_program_studi`
   ADD PRIMARY KEY (`id_prodi`);
 
 --
--- Indeks untuk tabel `tb_stopword`
+-- Indexes for table `tb_stopword`
 --
 ALTER TABLE `tb_stopword`
   ADD PRIMARY KEY (`id_stopword`);
 
 --
--- Indeks untuk tabel `tb_tugas_akhir`
+-- Indexes for table `tb_tugas_akhir`
 --
 ALTER TABLE `tb_tugas_akhir`
   ADD PRIMARY KEY (`id_ta`),
@@ -349,106 +339,80 @@ ALTER TABLE `tb_tugas_akhir`
   ADD KEY `id_prodi` (`id_prodi`);
 
 --
--- Indeks untuk tabel `tb_user`
+-- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_username_unique` (`username`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_index`
+-- AUTO_INCREMENT for table `tb_index`
 --
 ALTER TABLE `tb_index`
   MODIFY `id_index` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kata_dasar`
+-- AUTO_INCREMENT for table `tb_kata_dasar`
 --
 ALTER TABLE `tb_kata_dasar`
   MODIFY `id_katadasar` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kategori`
+-- AUTO_INCREMENT for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
   MODIFY `id_kategori` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pembimbing`
+-- AUTO_INCREMENT for table `tb_pembimbing`
 --
 ALTER TABLE `tb_pembimbing`
   MODIFY `id_pembimbing` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_program_studi`
+-- AUTO_INCREMENT for table `tb_program_studi`
 --
 ALTER TABLE `tb_program_studi`
   MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_stopword`
+-- AUTO_INCREMENT for table `tb_stopword`
 --
 ALTER TABLE `tb_stopword`
   MODIFY `id_stopword` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_tugas_akhir`
+-- AUTO_INCREMENT for table `tb_tugas_akhir`
 --
 ALTER TABLE `tb_tugas_akhir`
-  MODIFY `id_ta` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_ta` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_user`
+-- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
   MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `tb_index_ta`
---
-ALTER TABLE `tb_index_ta`
-  ADD CONSTRAINT `tb_index_ta_ibfk_1` FOREIGN KEY (`id_ta`) REFERENCES `tb_tugas_akhir` (`id_ta`),
-  ADD CONSTRAINT `tb_index_ta_ibfk_2` FOREIGN KEY (`id_index`) REFERENCES `tb_index` (`id_index`);
-
---
--- Ketidakleluasaan untuk tabel `tb_kategori_ta`
---
-ALTER TABLE `tb_kategori_ta`
-  ADD CONSTRAINT `tb_kategori_ta_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `tb_kategori` (`id_kategori`),
-  ADD CONSTRAINT `tb_kategori_ta_ibfk_2` FOREIGN KEY (`id_ta`) REFERENCES `tb_tugas_akhir` (`id_ta`);
-
---
--- Ketidakleluasaan untuk tabel `tb_tugas_akhir`
---
-ALTER TABLE `tb_tugas_akhir`
-  ADD CONSTRAINT `tb_tugas_akhir_ibfk_1` FOREIGN KEY (`id_pembimbing`) REFERENCES `tb_pembimbing` (`id_pembimbing`),
-  ADD CONSTRAINT `tb_tugas_akhir_ibfk_2` FOREIGN KEY (`id_prodi`) REFERENCES `tb_program_studi` (`id_prodi`);
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
