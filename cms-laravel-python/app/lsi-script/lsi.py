@@ -39,7 +39,10 @@ class LSI:
                 i += 1
             if word == self.words[i]:
                 result[i] += 1
+<<<<<<< HEAD
+=======
         # print("query ->"+str(query))
+>>>>>>> master
         return result
 
     def _get_words(self) -> List[str]:
@@ -57,7 +60,10 @@ class LSI:
         u, s, v = np.linalg.svd(self.term_doc_matrix)
         s = np.diag(s)
         k = self.rank_approximation
+<<<<<<< HEAD
+=======
         # print("rank app ->"+str(k))
+>>>>>>> master
         return u[:, :k], s[:k, :k], v[:, :k]
 
     def process(self) -> np.ndarray:
@@ -68,9 +74,26 @@ class LSI:
 
         res = np.apply_along_axis(lambda row: self._sim(q, row), axis=1, arr=d)
         ranking = np.argsort(-res) + 1
+<<<<<<< HEAD
+        return ranking
+
+    def index_to_db(self):
+
+        try:
+            engine = create_engine('mysql://root@localhost/db_base?charset=utf8mb4')
+            for word in self.words:
+               # print(type(word), end=" ")
+               if word.isalpha():
+                   query = 'INSERT INTO tb_index (kata) VALUES ( "{}" )'.format(word)
+                   engine.execute(query)
+            pass
+        except Exception as e:
+            raise
+=======
         # print("stopwords :"+str(self.stopwords))
         return ranking
 
+>>>>>>> master
 
 
     @staticmethod

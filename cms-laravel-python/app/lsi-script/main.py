@@ -3,8 +3,11 @@ import warnings
 import PyPDF2
 import os
 import sys
+<<<<<<< HEAD
+=======
 import json
 from sqlalchemy import create_engine
+>>>>>>> master
 def extract_pdf_to_list(path, file_name):
     """
     input : path of file
@@ -33,6 +36,16 @@ def stopwords_id(path, file_name):
     return stopwords
 if __name__ == '__main__':
     warnings.filterwarnings("ignore")
+<<<<<<< HEAD
+    documents = access_all(sys.argv[1])
+    stopwords = stopwords_id('', sys.argv[2])
+    # print(stopwords)
+    q = 'geodesi lalalala'
+    lsi = LSI(documents, q)
+    ranking = lsi.process()
+    print(ranking)
+    # lsi.index_to_db()
+=======
     try:
         engine = create_engine('mysql://sql12324137:SAGVuJCnS5@sql12.freemysqlhosting.net/sql12324137?charset=utf8mb4')
         query = "SELECT abstract FROM tb_tugas_akhir"
@@ -58,3 +71,4 @@ if __name__ == '__main__':
     except Exception as e:
         print(e)
         raise
+>>>>>>> master
