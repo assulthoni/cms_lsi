@@ -35,7 +35,7 @@
                             <td>{{$ta->tahun}}</td>
                             <td>{{$ta->penulis}}</td>
                             <td>{{$ta->abstract}}</td>
-                            <td><a href="{{asset('storage/TA/'.$ta->nama_file)}}" target="_blank">
+                            <td><a href="{{asset('public/TA/'.$ta->nama_file)}}" target="_blank">
                                 {{$ta->nama_file}}
                                 </a>
                             </td>
@@ -86,7 +86,7 @@
                         </option>
                         @endforeach
                     </select>
-                    
+
                     <select name="id_kategori" id="id_kategori" class="register-input input search-input input-group form-control border-0 search-input margin-bottom" required>
                         <option value="" disabled selected>
                             Pilih Kategori

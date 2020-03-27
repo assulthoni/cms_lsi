@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\File;
@@ -25,7 +25,7 @@ class MenuTAController extends Controller
     }
 
     public function index()
-    {      
+    {
         $program_studi = TbProgramStudi::all();
         $kategoris = TbKategori::all();
         $pembimbings = TbPembimbing::all();
@@ -50,7 +50,7 @@ class MenuTAController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        
+
         $validatedData = $request->validate([
             'nama_file' => 'file|required',
         ]);
@@ -59,8 +59,8 @@ class MenuTAController extends Controller
         $file = $request->file('nama_file');
         $extension = $file->getClientOriginalExtension();
         $filename = $file->getClientOriginalName();
-        $file = $file->storeAs('public/TA', $filename);
-
+        $file->move('public/TA',$filename);
+        // $file = $file->storeAs('public/TA', $filename);
         //input database
         $inserted_id = DB::table('tb_tugas_akhir')->insertGetId([
             'judul' => $request->judul,
@@ -72,13 +72,13 @@ class MenuTAController extends Controller
             'nama_file' => $filename,
 
         ]);
-        
+
         //input kategori_ta relational
         TbKategoriTum::create([
             'id_ta'=> $inserted_id,
             'id_kategori'=> $request->id_kategori,
         ]);
-    
+
         return redirect('menuta');
     }
 
@@ -88,10 +88,12 @@ class MenuTAController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+   //   public function pdfStream(Request $request){
+   //   // $user = UserDetail::find($user->id);
+   //   // $data["info"] = $user;
+   //   // $pdf = PDF::loadView('whateveryourviewname', $data);
+   //  return response()->file('public/TA/'.$request->$nama_file);
+   // }
 
     /**
      * Show the form for editing the specified resource.
