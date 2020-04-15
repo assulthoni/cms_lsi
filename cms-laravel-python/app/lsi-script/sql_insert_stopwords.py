@@ -10,7 +10,7 @@ def stopwords_id(path, file_name):
 
 if __name__ == '__main__':
     try:
-        engine = create_engine('mysql://root@localhost/db_base?charset=utf8mb4')
+        engine = create_engine('mysql://root@localhost/cms_ta?charset=utf8mb4')
         stopwords = stopwords_id('', sys.argv[1])
         for stopword in stopwords:
             query = "INSERT INTO tb_stopword (stopword) VALUES ( '{}' )".format(stopword)
