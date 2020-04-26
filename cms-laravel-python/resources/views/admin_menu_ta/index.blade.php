@@ -25,6 +25,7 @@
                             <th>Penulis</th>
                             <th>Abstrak</th>
                             <th>File</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
 
@@ -35,9 +36,27 @@
                             <td>{{$ta->tahun}}</td>
                             <td>{{$ta->penulis}}</td>
                             <td>{{$ta->abstract}}</td>
-                            <td><a href="{{asset('public/TA/'.$ta->nama_file)}}" target="_blank">
-                                {{$ta->nama_file}}
+                            <td><a href="{{asset('storage/TA/'.$ta->nama_file)}}" target="_blank">
+                                    {{$ta->nama_file}}
                                 </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('menuta.destroy', $ta->id_ta) }}" method="POST" style="flex-direction: row;">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <!-- Edit Button -->
+                                    <a href="{{ route('menuta.edit', $ta->id_ta) }}" class="btn btn-info">
+                                        <span class="icon">
+                                            <i class="fas fa-pen"></i>
+                                        </span>
+                                    </a>
+                                    <!-- Delete Button -->
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class="icon">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>
@@ -68,7 +87,7 @@
             </div>
             <div class="modal-body">
                 <p>Masukkan Data Tugas Akhir</p>
-                <form action="{{URL::to('menuta') }}" enctype="multipart/form-data" class="form-login text-center" method='POST'>
+                <form action="{{route('menuta.store') }}" enctype="multipart/form-data" class="form-login text-center" method='POST'>
                     {{ csrf_field() }}
                     <input type="text" placeholder="Masukkan Judul" name="judul" class="register-input input search-input input-group form-control border-0 search-input margin-bottom" required>
 
@@ -92,9 +111,9 @@
                             Pilih Kategori
                         </option>
                         @foreach($kategoris as $kategori)
-                            <option value="{{$kategori->id_kategori}}">
-                                {{$kategori->kategori}}
-                            </option>
+                        <option value="{{$kategori->id_kategori}}">
+                            {{$kategori->kategori}}
+                        </option>
                         @endforeach
                     </select>
 
@@ -103,14 +122,14 @@
                             Pilih Program Studi
                         </option>
                         @foreach($program_studi as $ps)
-                            <option value="{{$ps->id_prodi}}">
-                                {{$ps->nama_prodi}}
-                            </option>
+                        <option value="{{$ps->id_prodi}}">
+                            {{$ps->nama_prodi}}
+                        </option>
                         @endforeach
                     </select>
 
                     <textarea name="abstract" id="" cols="30" rows="10" class="register-input search-input input-group form-control border-0 search-input margin-bottom" required></textarea>
-                    <input type="file" placeholder="Masukkan File" id= "nama_file" name="nama_file" class="register-input input search-input input-group form-control border-0 search-input margin-bottom" required>
+                    <input type="file" placeholder="Masukkan File" id="nama_file" name="nama_file" class="register-input input search-input input-group form-control border-0 search-input margin-bottom" required>
                     <hr class="sidebar-divider">
                     <button type="submit" class="login-input btn btn-search input-group form-control border-0 search-input search-index">
                         Tambah

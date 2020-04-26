@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class MenuUserController extends Controller
 {
@@ -20,7 +21,7 @@ class MenuUserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin_menu_user',compact('users'));
+        return view('admin_menu_user.index',compact('users'));
     }
 
     /**
@@ -64,6 +65,9 @@ class MenuUserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::find($id);
+
+        return view('admin_menu_user.edit', compact('user'));
     }
 
     /**
@@ -76,6 +80,22 @@ class MenuUserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //jika ganti password
+        if($request->password != ''){
+            $validatedData = $request->validate([
+                'password' => ['required', 'string', 'confirmed'],
+            ]);
+
+            $user = User::find($id)->update([
+                'password' => Hash::make($request->password)
+            ]);
+
+        }
+        $user = User::find($id)->update([
+            'username' => $request->username
+        ]);
+
+        return redirect()->route('menuuser.index');
     }
 
     /**
@@ -87,5 +107,8 @@ class MenuUserController extends Controller
     public function destroy($id)
     {
         //
+        $user_delete = User::find($id)->delete();
+
+        return redirect()->route('menuuser.index');
     }
 }

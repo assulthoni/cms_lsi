@@ -21,7 +21,8 @@ class MenuKategoriController extends Controller
     public function index()
     {
         $kategori = TbKategori::all();
-        return view('admin_menu_kategori',compact('kategori'));
+
+        return view('admin_menu_kategori.index',compact('kategori'));
     }
 
     /**
@@ -43,9 +44,13 @@ class MenuKategoriController extends Controller
     public function store(Request $request)
     {
         //input kategori
+        $validatedData = $request->validate([
+            'kategori' => 'required',
+        ]);
+
         TbKategori::create($request->all());
     
-        return redirect('menukategori');
+        return redirect()->route('menukategori.index');
     }
 
     /**
@@ -68,6 +73,8 @@ class MenuKategoriController extends Controller
     public function edit($id)
     {
         //
+        $kategori = TbKategori::find($id);
+        return view('admin_menu_kategori.edit',compact('kategori'));
     }
 
     /**
@@ -80,6 +87,14 @@ class MenuKategoriController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'kategori' => 'required',
+        ]);
+        $kategori = TbKategori::find($id)->update([
+            'kategori' => $request->kategori
+        ]);
+
+        return redirect()->route('menukategori.index');
     }
 
     /**
@@ -91,5 +106,7 @@ class MenuKategoriController extends Controller
     public function destroy($id)
     {
         //
+        TbKategori::find($id)->delete();
+        return redirect()->route('menukategori.index');
     }
 }

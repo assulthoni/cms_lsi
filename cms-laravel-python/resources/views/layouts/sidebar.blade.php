@@ -73,19 +73,19 @@
             @else
             <!--      start admin-->
             <!-- Nav Item - Tampilkan Menu User -->
-            <li class="nav-item {{ Request::is('menuuser') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::segment(1)=='menuuser' ? 'active' : '' }}">
                 <a class="nav-link" href="{{url('/menuuser')}}">
                     <i class="fas fa-fw fa-eye"></i>
                     <span>Menu User</span></a>
             </li>
 
             <!-- Nav Item - Tampilkan Menu TA -->
-            <li class="nav-item {{ Request::is('menuta') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::segment(1)=='menuta' ? 'active' : '' }}">
                 <a class="nav-link" href="{{url('/menuta')}}">
                     <i class="fas fa-fw fa-eye"></i>
                     <span>Menu TA</span></a>
             </li>
-            <li class="nav-item {{ Request::is('menukategori') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::segment(1)=='menukategori' ? 'active' : '' }}">
                 <a class="nav-link" href="{{url('/menukategori')}}">
                     <i class="fas fa-fw fa-eye"></i>
                     <span>Menu Kategori</span></a>

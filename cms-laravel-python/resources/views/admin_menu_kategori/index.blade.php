@@ -21,6 +21,7 @@
                         <tr>
                             <th>Id Kategori</th>
                             <th>Nama Kategori</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
 
@@ -29,6 +30,24 @@
                         <tr>
                             <td>{{$kategori->id_kategori}}</td>
                             <td>{{$kategori->kategori}}</td>
+                            <td>
+                                <form action="{{ route('menukategori.destroy', $kategori->id_kategori) }}" method="POST" style="flex-direction: row;">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <!-- Edit Button -->
+                                    <a href="{{ route('menukategori.edit', $kategori->id_kategori) }}" class="btn btn-info">
+                                        <span class="icon">
+                                            <i class="fas fa-pen"></i>
+                                        </span>
+                                    </a>
+                                    <!-- Delete Button -->
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class="icon">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                     @endforeach
@@ -54,7 +73,7 @@
             </div>
             <div class="modal-body">
                 <p>Masukkan Data Kategori</p>
-                <form action="{{URL::to('menukategori') }}" class="form-login text-center" method='POST'>
+                <form action="{{route('menukategori.store')}}"" class="form-login text-center" method='POST'>
                     {{ csrf_field() }}
                     <input type="text" placeholder="Masukkan Nama Kategori" name="kategori" class="register-input input search-input input-group form-control border-0 search-input margin-bottom">
                     <hr class="sidebar-divider">

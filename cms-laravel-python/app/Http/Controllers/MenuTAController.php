@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class MenuTAController extends Controller
         $kategoris = TbKategori::all();
         $pembimbings = TbPembimbing::all();
         $tugas_akhir = TbTugasAkhir::all();
-        return view('admin_menu_ta',compact('tugas_akhir','pembimbings','kategoris','program_studi'));
+        return view('admin_menu_ta.index', compact('tugas_akhir', 'pembimbings', 'kategoris', 'program_studi'));
     }
 
     /**
@@ -41,6 +42,7 @@ class MenuTAController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -49,7 +51,8 @@ class MenuTAController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $validatedData = $request->validate([
             'nama_file' => 'file|required',
@@ -59,7 +62,7 @@ class MenuTAController extends Controller
         $file = $request->file('nama_file');
         $extension = $file->getClientOriginalExtension();
         $filename = $file->getClientOriginalName();
-        $file->move('public/TA',$filename);
+        $file->move('storage/TA', $filename);
         // $file = $file->storeAs('public/TA', $filename);
         //input database
         $inserted_id = DB::table('tb_tugas_akhir')->insertGetId([
@@ -75,11 +78,11 @@ class MenuTAController extends Controller
 
         //input kategori_ta relational
         TbKategoriTum::create([
-            'id_ta'=> $inserted_id,
-            'id_kategori'=> $request->id_kategori,
+            'id_ta' => $inserted_id,
+            'id_kategori' => $request->id_kategori,
         ]);
 
-        return redirect('menuta');
+        return redirect()->route('menuta.index');
     }
 
     /**
@@ -88,12 +91,6 @@ class MenuTAController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   //   public function pdfStream(Request $request){
-   //   // $user = UserDetail::find($user->id);
-   //   // $data["info"] = $user;
-   //   // $pdf = PDF::loadView('whateveryourviewname', $data);
-   //  return response()->file('public/TA/'.$request->$nama_file);
-   // }
 
     /**
      * Show the form for editing the specified resource.
@@ -104,6 +101,12 @@ class MenuTAController extends Controller
     public function edit($id)
     {
         //
+        $program_studi = TbProgramStudi::all();
+        $kategoris = TbKategori::all();
+        $kategori_ta = TbKategoriTum::where('id_ta', $id)->first();
+        $pembimbings = TbPembimbing::all();
+        $tugas_akhir = TbTugasAkhir::find($id);
+        return view('admin_menu_ta.edit', compact('tugas_akhir', 'pembimbings', 'kategoris', 'program_studi', 'kategori_ta'));
     }
 
     /**
@@ -115,7 +118,41 @@ class MenuTAController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //if has new file
+        if ($request->hasFile('nama_file')) {
+            //Delete Existing File
+            $existingFile = TbTugasAkhir::find($id)->nama_file;
+            unlink(storage_path('app/public/TA/' . $existingFile));
+
+            //Put New File
+            $file = $request->file('nama_file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $file->getClientOriginalName();
+            $file->move('storage/TA', $filename);
+
+            //Update File name in database
+            $updateFile = TbTugasAkhir::find($id)->update([
+                'nama_file' => $filename
+            ]);
+        }
+
+        //update other data
+        $tugas_akhir = TbTugasAkhir::find($id)->update([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'tahun' => $request->tahun,
+            'id_pembimbing' => $request->id_pembimbing,
+            'id_prodi' => $request->id_prodi,
+            'abstract' => $request->abstract,
+        ]);
+
+        //update kategori
+        TbKategoriTum::where('id_ta', $id)->update([
+            'id_kategori' => $request->id_kategori,
+        ]);
+
+        return redirect()->route('menuta.index');
+
     }
 
     /**
@@ -126,6 +163,14 @@ class MenuTAController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $file = TbTugasAkhir::find($id)->nama_file;
+        TbTugasAkhir::find($id)->delete();
+        DB::table('tb_kategori_ta')->where('id_ta',$id)->delete();
+
+        unlink(storage_path('app/public/TA/' . $file));
+
+
+        return redirect()->route('menuta.index');
     }
 }

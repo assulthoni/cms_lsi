@@ -18,21 +18,36 @@
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Role</th>
-                    </tr>
+                        <tr>
+                            <th>Username</th>
+                            <th>Aksi</th>
+                        </tr>
                     </thead>
                     <tbody>
 
-                    @foreach($users as $user)
-                    <tr>
-                        <td>{{$user->username}}</td>
-                        <td>*******</td>
-                        <td>-</td>
-                    </tr>
-                    @endforeach
+                        @foreach($users as $user)
+                        <tr>
+                            <td>{{$user->username}}</td>
+                            <td>
+                                <form action="{{ route('menuuser.destroy', $user->id) }}" method="POST" style="flex-direction: row;">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <!-- Edit Button -->
+                                    <a href="{{ route('menuuser.edit', $user->id) }}" class="btn btn-info">
+                                        <span class="icon">
+                                            <i class="fas fa-pen"></i>
+                                        </span>
+                                    </a>
+                                    <!-- Delete Button -->
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class="icon">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
 
                     </tbody>
                 </table>
@@ -59,15 +74,15 @@
 
                     <input id="username" type="text" placeholder="Masukkan Username" name="username" class="register-input input search-input input-group form-control border-0 search-input margin-bottom" value="{{ old('username') }}" required autofocus>
                     @if ($errors->has('username'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('username') }}</strong>
-                        </span>
+                    <span class="help-block">
+                        <strong>{{ $errors->first('username') }}</strong>
+                    </span>
                     @endif
                     <input id="password" type="password" placeholder="Masukkan Password" name="password" class="register-input input search-input input-group  form-control border-0 search-input margin-bottom" required>
                     @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
                     @endif
                     <input id="password-confirm" type="password" placeholder="Konfirmasi Password" name="password_confirmation" class="register-input input search-input input-group  form-control border-0 search-input margin-bottom" required>
                     <hr class="sidebar-divider">
