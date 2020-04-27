@@ -14,7 +14,7 @@
             <div class="card-body row">
                 <div class="col-md-1 col-lg-1 col-sm-1">
                     <!--                                     ini icon untuk file-->
-                    <a href="" target="_blank"><h1><i class="fa fa-file"></i></h1></a>
+                    <a href="{{asset('storage/TA/'.$ta->nama_file)}}" target="_blank"><h1><i class="fa fa-file"></i></h1></a>
                 </div>
                 <div class="col-md-11 col-lg-11 col-sm-11">
                     <h4 class="article-title border-left-primary p-2">

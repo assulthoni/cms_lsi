@@ -122,7 +122,7 @@ class MenuTAController extends Controller
         if ($request->hasFile('nama_file')) {
             //Delete Existing File
             $existingFile = TbTugasAkhir::find($id)->nama_file;
-            unlink(storage_path('app/public/TA/' . $existingFile));
+            unlink(public_path('storage/TA/' . $existingFile));
 
             //Put New File
             $file = $request->file('nama_file');
@@ -163,12 +163,12 @@ class MenuTAController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $file = TbTugasAkhir::find($id)->nama_file;
         TbTugasAkhir::find($id)->delete();
         DB::table('tb_kategori_ta')->where('id_ta',$id)->delete();
 
-        unlink(storage_path('app/public/TA/' . $file));
+        unlink(public_path('storage/TA/' . $file));
 
 
         return redirect()->route('menuta.index');
