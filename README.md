@@ -1,10 +1,10 @@
 # Content Management System with Latent Semantic Indexing search
 
-this project to help admin and user.
+Project ini sebelumnya dibangun atas dasar request dari seseorang yang sedang mengambil TA di ITP Padang. Development dilakukan oleh tiga orang yaitu Ahmad Shohibus Sulthoni (me), Ifen Faridian, Arddhana Zafran. Development dilakukan menggunakan 2 bahasa yaitu PHP untuk pembuatan web. Dan script Python untuk perhitungan LSI.
 
 ## Getting Started
 
-Cara-cara untuk mulao
+Cara-cara untuk mulai
 
 ### Prerequisites
 
